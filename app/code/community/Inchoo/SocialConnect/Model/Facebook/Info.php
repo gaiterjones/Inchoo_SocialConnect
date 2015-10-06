@@ -101,10 +101,13 @@ class Inchoo_SocialConnect_Model_Facebook_Info extends Varien_Object
     protected function _load()
     {
         try{
-            $response = $this->client->api(
+			$response = $this->client->api(
                 '/me',
                 'GET',
-                $this->params
+                array(
+                        'fields' =>
+                        'id,name,first_name,last_name,link,birthday,gender,email,picture.type(large)'
+                    )
             );
 
             foreach ($response as $key => $value) {
